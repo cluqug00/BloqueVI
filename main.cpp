@@ -110,7 +110,7 @@ enum LedSequence
   ALL_ON
 };
 LedSequence currentSequence = NONE;
-bool isVillancicoPlaying = false;
+bool isSongPlaying = false;
 int tempo = 108;
 
 // Se ponen las notas, seguidas de la duración.
@@ -196,8 +196,8 @@ int notes = sizeof(melody) / sizeof(melody[0]) / 2;
 int wholenote = (60000 * 4) / tempo;
 
 int divider = 0, noteDuration = 0;
-void playVillancicoWithLights();
-void stopVillancico();
+void playSongWithLights();
+void StopSong();
 void runLedSequence(LedSequence sequence);
 void ledSequence1();
 void ledSequence2();
@@ -242,25 +242,25 @@ void loop()
       currentSequence = ALL_ON;
       break;
     case Key21::KEY_6:
-      isVillancicoPlaying = !isVillancicoPlaying;
-      if (isVillancicoPlaying)
+      isSongPlaying = !isSongPlaying;
+      if (isSongPlaying)
       {
         Serial.println("Villancico comenzado");
-        playVillancicoWithLights();
+        playSongWithLights();
       }
       else
       {
         Serial.println("Villancico detenido");
-        stopVillancico();
+        StopSong();
       }
       break;
     default:
       // Si se presiona un botón no definido, detener todo
       Serial.println("Comando indefinido. Deteniendo villancico y luces.");
-      if (isVillancicoPlaying)
+      if (isSongPlaying)
       {
         Serial.println("Villancico detenido por otro botón");
-        stopVillancico();
+        StopSong();
       }
       currentSequence = NONE; // Detener la secuencia de LEDs
       break;
@@ -268,14 +268,14 @@ void loop()
   }
 
   // Ejecutar la secuencia de LEDs actual
-  if (!isVillancicoPlaying)
+  if (!isSongPlaying)
   {
     runLedSequence(currentSequence);
   }
 }
 
 // Función para reproducir y detener el villancico con luces
-void playVillancicoWithLights() {
+void playSongWithLights() {
   for (int thisNote = 0; thisNote < notes * 2; thisNote = thisNote + 2) {
     // Calcula la duración de cada nota
     divider = melody[thisNote + 1];
@@ -304,7 +304,7 @@ void playVillancicoWithLights() {
     // Verifica si se ha presionado otro botón
     Key21 command = irController.getKey();
     if (command != Key21::NONE && command != Key21::KEY_6) {
-      stopVillancico(); // Detener el villancico si se presiona un botón diferente
+      StopSong(); // Detener el villancico si se presiona un botón diferente
       return; // Salir de la función
     }
   }
@@ -312,14 +312,14 @@ void playVillancicoWithLights() {
 
 
 
-void stopVillancico()
+void StopSong()
 {
   noTone(BUZZER_PIN);
   digitalWrite(LED_PIN_1, LOW);
   digitalWrite(LED_PIN_2, LOW);
   digitalWrite(LED_PIN_3, LOW);
   digitalWrite(LED_PIN_4, LOW);
-  isVillancicoPlaying = false; // Resetea el estado del villancico
+  isSongPlaying = false; // Resetea el estado del villancico
   currentSequence = NONE;      // Reinicia la secuencia de LEDs
 }
 
