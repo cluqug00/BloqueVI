@@ -60,12 +60,9 @@ Este proyecto utiliza una placa ESP32 y varios componentes electrónicos para cr
 - IDE de Arduino
 - Librería `DIYables_IRcontroller` (instalable desde el gestor de librerías de Arduino)
 
-## Futuras Mejores
+## Futuras Mejoras
 
 - Agregar más patrones de luces.
 - Integrar sensores adicionales para detección de movimiento o control por voz.
 - Crear una aplicación móvil para controlar las funciones.
 
-## Licencia
-
-Este proyecto se distribuye bajo la licencia MIT. Si deseas utilizarlo o modificarlo, por favor, atribuye el trabajo original.
