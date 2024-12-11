@@ -9,6 +9,14 @@ Este proyecto utiliza una placa ESP32 y varios componentes electrónicos para cr
 - **Efectos de Luces LED:** Cuatro LEDs controlados individualmente permiten diferentes patrones de iluminación sincronizados con la música.
 - **Diseño Modular:** Fácil de extender y modificar, con funciones separadas para reproducir canciones y gestionar las luces.
 
+## Motivación del proyecto
+Combinar elementos de desarrollo software con hardware y el diseño de una carcasa mediante el uso de la aplicación tinkercad ha sido la motivación de este proyecto.
+
+## Objetivos
+-Desarrollar los conocimientos con el lenguaje "Arduino".
+-Conocer la herramienta Tinkercad, aprender los conceptos básicos y desarrollar una caja funcional.
+-Combinar distintos elementos tecnologicos para llevar a cabo el proyecto.
+
 ## Componentes
 
 - ESP32
